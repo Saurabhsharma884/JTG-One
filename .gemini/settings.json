@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "googlesheets": {
+      "command": "node",
+      "args": [
+        "C:/hackathon/dist/index.js"
+      ],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "C:/hackathon/credentials.json"
+      }
+    }
+  }
+}

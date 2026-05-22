@@ -1,0 +1,32 @@
+{
+  "levels": [
+    {
+      "designation": "Associate Software Engineer",
+      "level": "L1",
+      "requirements": {
+        "technicalExcellence": { "minScore": 2.0, "keySkills": ["Basic debugging", "Syntax knowledge"] },
+        "delivery": { "minScore": 2.0, "expectations": ["Complete assigned tasks"] },
+        "timelyExecution": { "minScore": 2.0 },
+        "process": { "minScore": 2.0 },
+        "communication": { "minScore": 2.0 },
+        "teamworkLeadership": { "minScore": 2.0 },
+        "organisationalContribution": { "minScore": 1.5 }
+      },
+      "typicalTenure": "0-2 years"
+    },
+    {
+      "designation": "Software Engineer",
+      "level": "L2",
+      "requirements": {
+        "technicalExcellence": { "minScore": 3.0, "keySkills": ["System design basics", "Code review"] },
+        "delivery": { "minScore": 3.0, "expectations": ["Independent feature delivery"] },
+        "timelyExecution": { "minScore": 3.0 },
+        "process": { "minScore": 3.0 },
+        "communication": { "minScore": 3.0 },
+        "teamworkLeadership": { "minScore": 3.0 },
+        "organisationalContribution": { "minScore": 2.5 }
+      },
+      "typicalTenure": "2-4 years"
+    }
+  ]
+}
