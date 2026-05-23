@@ -10,7 +10,7 @@ export class McpClientService implements OnModuleInit, OnModuleDestroy {
   private transport: StdioClientTransport;
   private connected = false;
 
-  constructor(private readonly configService: ConfigService) {}
+  constructor(private readonly configService: ConfigService) { }
 
   async onModuleInit() { await this.connect(); }
   async onModuleDestroy() { await this.disconnect(); }
@@ -20,7 +20,7 @@ export class McpClientService implements OnModuleInit, OnModuleDestroy {
     try {
       const serverPath = this.configService.get<string>('mcp.serverPath');
       const credentialsPath = this.configService.get<string>('mcp.credentialsPath');
-      this.transport = new StdioClientTransport({ command: 'node', args: [serverPath], env: { ...process.env, GOOGLE_APPLICATION_CREDENTIALS: credentialsPath } });
+      this.transport = new StdioClientTransport({ command: 'node', args: [serverPath!], env: { ...process.env, GOOGLE_APPLICATION_CREDENTIALS: credentialsPath! } });
       this.client = new Client({ name: 'nest-backend', version: '1.0.0' }, { capabilities: {} });
       await this.client.connect(this.transport);
       this.connected = true;
@@ -44,7 +44,7 @@ export class McpClientService implements OnModuleInit, OnModuleDestroy {
     const ranges = this.configService.get<string[]>('sheets.ranges') || [];
     const results: Record<string, any> = {};
     for (const range of ranges) {
-      try { results[range] = await this.readSheet(id, range); } catch (error) { results[range] = { error: error.message }; }
+      try { results[range] = await this.readSheet(id!, range); } catch (error) { results[range] = { error: error.message }; }
     }
     return results;
   }

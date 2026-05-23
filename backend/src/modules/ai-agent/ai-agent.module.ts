@@ -11,6 +11,6 @@ import { Employee, EmployeeSchema } from '../employee/schemas/employee.schema';
   imports: [ConfigModule, MongooseModule.forFeature([{ name: AISuggestion.name, schema: AISuggestionSchema }, { name: Employee.name, schema: EmployeeSchema }])],
   controllers: [AiAgentController],
   providers: [AiAgentService, McpClientService],
-  exports: [AiAgentService],
+  exports: [AiAgentService, McpClientService],
 })
 export class AiAgentModule {}

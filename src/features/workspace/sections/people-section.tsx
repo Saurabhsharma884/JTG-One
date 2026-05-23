@@ -3,18 +3,19 @@ import { Avatar } from "@/components/employee/avatar";
 import { InsightList } from "@/components/employee/insight-list";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { mockSession } from "@/lib/mock-data/jtg-one";
 import { canViewAnalytics, canViewSection } from "@/lib/permissions/visibility";
 import { cn } from "@/lib/utils";
 import type { Employee } from "@/types/jtg-one";
 
 export function PeopleSection({
+  viewer,
   query,
   onQueryChange,
   results,
   selectedEmployee,
   onSelectEmployee,
 }: {
+  viewer: Employee;
   query: string;
   onQueryChange: (value: string) => void;
   results: Employee[];
@@ -65,12 +66,12 @@ export function PeopleSection({
         </CardContent>
       </Card>
 
-      <PublicProfile employee={selectedEmployee} />
+      <PublicProfile employee={selectedEmployee} viewer={viewer} />
     </div>
   );
 }
 
-function PublicProfile({ employee }: { employee: Employee }) {
+function PublicProfile({ employee, viewer }: { employee: Employee; viewer: Employee }) {
   return (
     <Card>
       <CardHeader>
@@ -96,16 +97,16 @@ function PublicProfile({ employee }: { employee: Employee }) {
           </div>
         </div>
 
-        {canViewSection(mockSession, employee, "achievements") && (
+        {canViewSection(viewer, employee, "achievements") && (
           <InsightList title="Achievements" items={employee.achievements} tone="green" />
         )}
-        {canViewSection(mockSession, employee, "strengths") && (
+        {canViewSection(viewer, employee, "strengths") && (
           <InsightList title="Strengths" items={employee.strengths} tone="blue" />
         )}
-        {canViewAnalytics(mockSession, employee) && employee.feedbackAnalyses[0] && (
+        {canViewAnalytics(viewer, employee) && (employee.feedbackAnalyses ?? [])[0] && (
           <div className="rounded-lg border border-slate-200 p-4">
             <p className="text-sm font-semibold">Feedback visible to this viewer</p>
-            <p className="mt-2 text-sm text-slate-600">{employee.feedbackAnalyses[0].summary}</p>
+            <p className="mt-2 text-sm text-slate-600">{(employee.feedbackAnalyses ?? [])[0].summary}</p>
           </div>
         )}
       </CardContent>

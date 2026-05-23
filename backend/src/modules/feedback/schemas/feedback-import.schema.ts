@@ -21,7 +21,7 @@ export class AnalyticsData {
 
 @Schema({ timestamps: true })
 export class FeedbackImport {
-  @Prop({ type: Types.ObjectId, ref: 'Employee', required: true, index: true }) employeeId: Types.ObjectId;
+  @Prop({ type: String, required: true, index: true }) employeeId: string;
   @Prop({ type: Date, default: Date.now }) importedAt: Date;
   @Prop({ required: true }) label: string;
   @Prop({ default: false }) isLatest: boolean;

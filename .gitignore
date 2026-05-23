@@ -23,6 +23,7 @@
 
 # backend 
 /backend/dist
+/backend/node_modules
 
 # misc
 .DS_Store

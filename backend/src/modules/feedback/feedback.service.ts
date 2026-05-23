@@ -9,15 +9,15 @@ export class FeedbackService {
   constructor(@InjectModel(FeedbackImport.name) private feedbackImportModel: Model<FeedbackImportDocument>) {}
 
   async create(dto: CreateFeedbackImportDto): Promise<FeedbackImport> {
-    const employeeId = new Types.ObjectId(dto.employeeId);
+    const employeeId = dto.employeeId;
     if (dto.isLatest) await this.feedbackImportModel.updateMany({ employeeId }, { $set: { isLatest: false } }).exec();
     return new this.feedbackImportModel({ ...dto, employeeId }).save();
   }
 
   async findLatestByEmployeeId(employeeId: string): Promise<FeedbackImport> {
-    const latest = await this.feedbackImportModel.findOne({ employeeId: new Types.ObjectId(employeeId), isLatest: true }).exec();
+    const latest = await this.feedbackImportModel.findOne({ employeeId, isLatest: true }).exec();
     if (!latest) {
-      const mostRecent = await this.feedbackImportModel.findOne({ employeeId: new Types.ObjectId(employeeId) }).sort({ importedAt: -1 }).exec();
+      const mostRecent = await this.feedbackImportModel.findOne({ employeeId }).sort({ importedAt: -1 }).exec();
       if (!mostRecent) throw new NotFoundException(`No feedback found for employee ${employeeId}`);
       return mostRecent;
     }
@@ -25,7 +25,7 @@ export class FeedbackService {
   }
 
   async findAllByEmployeeId(employeeId: string): Promise<FeedbackImport[]> {
-    return this.feedbackImportModel.find({ employeeId: new Types.ObjectId(employeeId) }).sort({ importedAt: -1 }).exec();
+    return this.feedbackImportModel.find({ employeeId }).sort({ importedAt: -1 }).exec();
   }
 
   async findOne(id: string): Promise<FeedbackImport> {

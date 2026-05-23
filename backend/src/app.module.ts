@@ -12,13 +12,14 @@ import { SearchModule } from './modules/search/search.module';
 import { ProfileModule } from './modules/profile/profile.module';
 import { AiAgentModule } from './modules/ai-agent/ai-agent.module';
 import { EventsModule } from './modules/events/events.module';
+import { FeedbackAnalysisModule } from './modules/feedback-analysis/feedback-analysis.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
     MongooseModule.forRootAsync({ imports: [ConfigModule], useFactory: async (configService: ConfigService) => ({ uri: configService.get<string>('mongodb.uri') }), inject: [ConfigService] }),
     EventEmitterModule.forRoot(),
-    EmployeeModule, TimelineModule, FeedbackModule, VisibilityModule, SearchModule, ProfileModule, AiAgentModule, EventsModule,
+    EmployeeModule, TimelineModule, FeedbackModule, VisibilityModule, SearchModule, ProfileModule, AiAgentModule, EventsModule, FeedbackAnalysisModule,
   ],
   controllers: [],
   providers: [],

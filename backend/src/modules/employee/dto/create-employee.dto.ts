@@ -5,6 +5,7 @@ export class CreateEmployeeDto {
   @IsEmail() @IsNotEmpty() email: string;
   @IsString() @IsNotEmpty() name: string;
   @IsString() @IsOptional() designation?: string;
+  @IsString() @IsOptional() targetDesignation?: string;
   @IsString() @IsOptional() currentProject?: string;
   @IsArray() @IsString({ each: true }) @IsOptional() skills?: string[];
   @IsDateString() @IsOptional() inductionDate?: Date;

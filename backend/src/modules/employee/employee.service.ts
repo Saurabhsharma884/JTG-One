@@ -19,6 +19,8 @@ export class EmployeeService {
   }
 
   async findOne(id: string): Promise<Employee> {
+    const mongoose = require('mongoose');
+    if (!mongoose.Types.ObjectId.isValid(id)) throw new NotFoundException(`Employee with ID ${id} not found`);
     const employee = await this.employeeModel.findById(id).exec();
     if (!employee) throw new NotFoundException(`Employee with ID ${id} not found`);
     return employee;

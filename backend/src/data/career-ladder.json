@@ -4,29 +4,236 @@
       "designation": "Associate Software Engineer",
       "level": "L1",
       "requirements": {
-        "technicalExcellence": { "minScore": 2.0, "keySkills": ["Basic debugging", "Syntax knowledge"] },
-        "delivery": { "minScore": 2.0, "expectations": ["Complete assigned tasks"] },
+        "technicalExcellence": {
+          "minScore": 2.0,
+          "keySkills": ["Basic debugging", "Syntax knowledge", "Unit testing basics", "Read existing code"]
+        },
+        "delivery": {
+          "minScore": 2.0,
+          "expectations": ["Complete assigned tasks", "Deliver small bug fixes and features with guidance"]
+        },
         "timelyExecution": { "minScore": 2.0 },
-        "process": { "minScore": 2.0 },
-        "communication": { "minScore": 2.0 },
-        "teamworkLeadership": { "minScore": 2.0 },
-        "organisationalContribution": { "minScore": 1.5 }
+        "process": { "minScore": 2.0, "expectations": ["Follow team processes", "Write simple PRs"] },
+        "communication": { "minScore": 2.0, "expectations": ["Ask clarifying questions", "Provide status updates"] },
+        "teamworkLeadership": { "minScore": 2.0, "expectations": ["Work effectively with peers", "Accept feedback"] },
+        "organisationalContribution": { "minScore": 1.5, "expectations": ["Participate in team meetings"] }
       },
+      "responsibilities": [
+        "Fix bugs and implement small, well-scoped features",
+        "Write unit tests and documentation for new work",
+        "Follow established coding standards and review feedback",
+        "Learn codebase and seek mentorship"
+      ],
+      "competencies": {
+        "technicalSkills": ["Language fundamentals", "Debugging", "Version control"],
+        "collaboration": ["Ask for help", "Accept code review feedback"],
+        "quality": ["Write basic tests", "Follow coding standards"]
+      },
+      "exampleBehaviors": [
+        "Pairs with a mentor to implement a new endpoint",
+        "Pushes a small PR and iterates based on reviewer feedback",
+        "Asks clarifying questions when requirements are unclear"
+      ],
+      "promotionCriteria": [
+        "Consistently delivers assigned tasks with acceptable quality",
+        "Demonstrates growth in code comprehension and debugging",
+        "Shows initiative to learn and applies feedback"
+      ],
+      "interviewFocus": ["Fundamental coding questions", "Debugging exercises", "Behavioral: learning & teamwork"],
+      "recommendedResources": [
+        "Clean Code (Robert C. Martin)",
+        "The Pragmatic Programmer (Hunt & Thomas)",
+        "Codecademy / freeCodeCamp language tracks"
+      ],
+      "sampleGoals": [
+        "Ship 3 small features end-to-end with tests in the next 6 months",
+        "Reduce bug backlog for assigned module by 20%",
+        "Complete 'Testing Essentials' course and apply unit tests consistently"
+      ],
       "typicalTenure": "0-2 years"
     },
     {
       "designation": "Software Engineer",
       "level": "L2",
       "requirements": {
-        "technicalExcellence": { "minScore": 3.0, "keySkills": ["System design basics", "Code review"] },
-        "delivery": { "minScore": 3.0, "expectations": ["Independent feature delivery"] },
+        "technicalExcellence": { "minScore": 3.0, "keySkills": ["System design basics", "Code review", "Testing & debugging"] },
+        "delivery": { "minScore": 3.0, "expectations": ["Independent feature delivery", "Estimate small projects"] },
         "timelyExecution": { "minScore": 3.0 },
-        "process": { "minScore": 3.0 },
-        "communication": { "minScore": 3.0 },
-        "teamworkLeadership": { "minScore": 3.0 },
-        "organisationalContribution": { "minScore": 2.5 }
+        "process": { "minScore": 3.0, "expectations": ["Contribute to process improvements"] },
+        "communication": { "minScore": 3.0, "expectations": ["Clear PRs and design notes"] },
+        "teamworkLeadership": { "minScore": 3.0, "expectations": ["Mentor junior engineers"] },
+        "organisationalContribution": { "minScore": 2.5, "expectations": ["Help improve team tooling"] }
       },
+      "responsibilities": [
+        "Own small features from design through delivery",
+        "Perform thorough code reviews and improve code quality",
+        "Write reliable tests and monitor deployed changes",
+        "Mentor L1 engineers and drive smaller process improvements"
+      ],
+      "competencies": {
+        "technicalSkills": ["Design basics", "Testing strategies", "Debugging complex bugs"],
+        "planning": ["Estimation", "Breakdown tasks", "Deliver reliably"],
+        "communication": ["Document design decisions", "Stakeholder updates"]
+      },
+      "exampleBehaviors": [
+        "Leads development of a small feature with minimal supervision",
+        "Identifies and fixes flakey tests and improves test coverage",
+        "Proposes and implements a performance improvement in a service"
+      ],
+      "promotionCriteria": [
+        "Delivers multiple independent features reliably",
+        "Demonstrates consistent code quality and testing practices",
+        "Mentors others and contributes to team improvements"
+      ],
+      "interviewFocus": ["Coding (medium complexity)", "Unit/integration testing design", "System design basics", "Behavioral: ownership and collaboration"],
+      "recommendedResources": [
+        "Designing Data-Intensive Applications (Martin Kleppmann)",
+        "Refactoring (Martin Fowler)",
+        "System Design Primer (online)"
+      ],
+      "sampleGoals": [
+        "Design and deliver a new API used by two teams within 6 months",
+        "Mentor two interns or junior hires and improve their onboarding",
+        "Reduce average PR review time by implementing clearer contribution guidelines"
+      ],
       "typicalTenure": "2-4 years"
+    },
+    {
+      "designation": "Senior Software Engineer",
+      "level": "L3",
+      "requirements": {
+        "technicalExcellence": { "minScore": 4.0, "keySkills": ["System design", "Performance tuning", "Reliability engineering"] },
+        "delivery": { "minScore": 4.0, "expectations": ["Lead medium-sized projects", "Drive cross-team delivery"] },
+        "timelyExecution": { "minScore": 4.0 },
+        "process": { "minScore": 4.0, "expectations": ["Define and improve SDLC practices"] },
+        "communication": { "minScore": 4.0, "expectations": ["Present designs to stakeholders"] },
+        "teamworkLeadership": { "minScore": 4.0, "expectations": ["Mentor seniors and leads"] },
+        "organisationalContribution": { "minScore": 3.5, "expectations": ["Influence product/tech roadmap"] }
+      },
+      "responsibilities": [
+        "Design and own complex subsystems or services",
+        "Lead medium-sized projects with cross-functional teams",
+        "Coach and mentor other engineers, improving team capability",
+        "Drive reliability, observability and performance work"
+      ],
+      "competencies": {
+        "technicalSkills": ["Architecture patterns", "Distributed systems", "Databases & scaling"],
+        "leadership": ["Mentorship", "Technical decision-making", "Cross-team facilitation"],
+        "delivery": ["Project leadership", "Risk identification and mitigation"]
+      },
+      "exampleBehaviors": [
+        "Leads the redesign of a service to improve scaling by 3x",
+        "Creates technical proposals that reduce operational cost",
+        "Regularly mentors peers and influences hiring decisions"
+      ],
+      "promotionCriteria": [
+        "Sustained ownership and delivery of significant, high-quality projects",
+        "Clear technical leadership and mentorship across teams",
+        "Measurable improvements to system reliability or performance"
+      ],
+      "interviewFocus": ["System design (medium-large)", "Architecture tradeoffs", "Operational excellence", "Behavioral: leadership & influence"],
+      "recommendedResources": [
+        "Designing Data-Intensive Applications (Martin Kleppmann)",
+        "Site Reliability Engineering (Google SRE book)",
+        "The Manager's Path (for leadership concepts)"
+      ],
+      "sampleGoals": [
+        "Improve service latency by 30% across critical endpoints",
+        "Lead a migration to a new database with zero customer impact",
+        "Establish a mentoring program and onboard 3 mentees"
+      ],
+      "typicalTenure": "4-7 years"
+    },
+    {
+      "designation": "Staff Engineer",
+      "level": "L4",
+      "requirements": {
+        "technicalExcellence": { "minScore": 4.5, "keySkills": ["System architecture", "Cross-team integration", "Technical strategy"] },
+        "delivery": { "minScore": 4.5, "expectations": ["Lead multi-team initiatives", "Set technical direction for projects"] },
+        "timelyExecution": { "minScore": 4.5 },
+        "process": { "minScore": 4.5, "expectations": ["Drive process improvements that scale across teams"] },
+        "communication": { "minScore": 4.5, "expectations": ["Communicate complex tradeoffs to leadership"] },
+        "teamworkLeadership": { "minScore": 4.5, "expectations": ["Develop leaders and technical talent across org"] },
+        "organisationalContribution": { "minScore": 4.0, "expectations": ["Influence product/engineering strategy"] }
+      },
+      "responsibilities": [
+        "Own architectural decisions impacting multiple teams",
+        "Set engineering standards and best practices",
+        "Coach senior engineers and partner with product/ops at scale",
+        "Identify long-term technical risks and mitigation plans"
+      ],
+      "competencies": {
+        "technicalSkills": ["Large-scale system design", "Cost/performance tradeoffs", "Security & compliance considerations"],
+        "strategic": ["Roadmap influence", "Cross-team alignment", "Stakeholder management"],
+        "mentorship": ["Developing other leaders", "Hiring influence"]
+      },
+      "exampleBehaviors": [
+        "Authors architecture documents adopted across services",
+        "Leads a cross-team platform initiative that reduces toil by 40%",
+        "Represents engineering on product strategy discussions"
+      ],
+      "promotionCriteria": [
+        "Proven cross-team impact and long-term strategic contributions",
+        "Recognised leader for technical excellence and mentorship",
+        "Sustained measurable improvements to engineering velocity or stability"
+      ],
+      "interviewFocus": ["Large system design", "Organisational influence scenarios", "Technical leadership case studies"],
+      "recommendedResources": [
+        "Effective Engineering Management books and courses",
+        "Architecture patterns at scale (various resources)",
+        "Leadership coaching/mentoring programs"
+      ],
+      "sampleGoals": [
+        "Define and deliver a platform initiative that reduces deployment time by 50%",
+        "Create and roll out architecture guidelines adopted by 3 teams",
+        "Mentor 5 engineers to reach Senior level"
+      ],
+      "typicalTenure": "6+ years"
+    },
+    {
+      "designation": "Principal Engineer",
+      "level": "L5",
+      "requirements": {
+        "technicalExcellence": { "minScore": 5.0, "keySkills": ["Technical vision", "Deep domain expertise", "Influencing architecture at org level"] },
+        "delivery": { "minScore": 5.0, "expectations": ["Define long-term roadmaps and lead organisational change"] },
+        "timelyExecution": { "minScore": 5.0 },
+        "process": { "minScore": 5.0, "expectations": ["Establish processes that balance speed and quality across org"] },
+        "communication": { "minScore": 5.0, "expectations": ["Articulate technical vision to executives and stakeholders"] },
+        "teamworkLeadership": { "minScore": 5.0, "expectations": ["Grow leadership bench and foster technical culture"] },
+        "organisationalContribution": { "minScore": 5.0, "expectations": ["Shape the company's technical direction and hiring bar"] }
+      },
+      "responsibilities": [
+        "Set technical vision and priorities that span the company",
+        "Sponsor major architectural initiatives and long-lived platforms",
+        "Coach and enable senior technical leaders",
+        "Represent engineering externally when needed"
+      ],
+      "competencies": {
+        "technicalSkills": ["Deep system knowledge", "Innovative technical solutions", "Domain leadership"],
+        "executive": ["Strategy alignment", "Influence across organization", "Decision-making under uncertainty"],
+        "culture": ["Raising technical bar", "Mentorship at scale"]
+      },
+      "exampleBehaviors": [
+        "Defines multi-year technical strategy adopted by leadership",
+        "Champions an architectural change that unlocks new product capabilities",
+        "Mentors multiple staff engineers and shapes hiring criteria"
+      ],
+      "promotionCriteria": [
+        "Company-level technical impact with measurable business outcomes",
+        "Recognised as a technical leader and mentor across the organisation",
+        "Sustained ability to drive complex, ambiguous initiatives to success"
+      ],
+      "interviewFocus": ["Technical strategy and architecture at scale", "Case studies showing organisational impact", "Executive communication and stakeholder management"],
+      "recommendedResources": [
+        "Technical leadership seminars and executive coaching",
+        "Books on architecture, strategy, and organisational design"
+      ],
+      "sampleGoals": [
+        "Lead a multi-year platform roadmap that increases revenue or reduces cost by a measurable percent",
+        "Establish a technical fellowship/guest lecture series to raise domain expertise",
+        "Drive cross-org initiative improving customer-facing reliability metrics by X%"
+      ],
+      "typicalTenure": "8+ years"
     }
   ]
 }

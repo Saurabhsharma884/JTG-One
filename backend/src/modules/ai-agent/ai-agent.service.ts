@@ -44,10 +44,33 @@ export class AiAgentService {
       const cp = path.join(__dirname, '../../data/career-ladder.json');
       const careerLadder = fs.existsSync(cp) ? JSON.parse(fs.readFileSync(cp, 'utf-8')) : {};
       const prompt = `Analyze employee profile, performance data, and career ladder to return a JSON growth plan.\nProfile: ${employee.name}, ${employee.designation}, Skills: ${employee.skills.join(',')}\nData: ${JSON.stringify(sheetData)}\nLadder: ${JSON.stringify(careerLadder)}\nReturn strictly valid JSON: { "targetDesignation": "...", "suggestedGoals": ["..."], "skillGaps": [{ "skill": "...", "currentLevel": "...", "requiredLevel": "..." }], "recommendedLearningPath": [{ "title": "...", "type": "...", "url": "..." }], "projectExposureSuggestions": ["..."], "timelineForImprovement": "...", "confidenceSummary": "...", "reasoningSummary": "..." }`;
-      
-      const response = await this.aiClient.models.generateContent({ model: this.configService.get('gemini.model'), contents: prompt, config: { temperature: 0.2, responseMimeType: "application/json" } });
+
+      const response = await this.aiClient.models.generateContent({ model: this.configService.get('gemini.model')!, contents: prompt, config: { temperature: 0.2, responseMimeType: "application/json" } });
       const aiResult = JSON.parse(response.text || '{}');
       await this.aiSuggestionModel.findByIdAndUpdate(jobId, { ...aiResult, sheetDataSnapshot: sheetData, status: 'completed', generatedAt: new Date() });
+
+      // Map suggestedGoals (strings or objects) into structured GoalSuggestion entries and save to employee
+      try {
+        const suggested = aiResult.suggestedGoals || [];
+        const goalsArray = Array.isArray(suggested) ? suggested : [suggested];
+        const goalObjects = goalsArray.map((g: any, idx: number) => {
+          const title = typeof g === 'string' ? g : g.title || (g.text || JSON.stringify(g));
+          const description = typeof g === 'string' ? g : g.description || JSON.stringify(g);
+          return {
+            id: new Types.ObjectId().toString(),
+            title: String(title).slice(0, 300),
+            priority: (g && g.priority) || 'medium',
+            description: String(description).slice(0, 1000),
+            timeframe: (g && g.timeframe) || '3-6 months',
+            evidence: (g && g.evidence) || '',
+          };
+        });
+
+        await this.employeeModel.findByIdAndUpdate(employee._id, { $set: { goalSuggestions: goalObjects } }).exec();
+      } catch (err) {
+        this.logger.warn('Failed to persist goal suggestions to employee record', err?.message || err);
+      }
+
       this.eventEmitter.emit('ai.refresh.complete', { employeeId: employee._id.toString(), jobId, status: 'completed' });
     } catch (error) {
       this.logger.error(error);

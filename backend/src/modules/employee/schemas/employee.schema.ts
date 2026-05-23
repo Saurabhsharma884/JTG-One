@@ -17,11 +17,23 @@ export class VisibilitySettings {
 }
 export const VisibilitySettingsSchema = SchemaFactory.createForClass(VisibilitySettings);
 
+@Schema()
+export class GoalSuggestion {
+  @Prop() id: string;
+  @Prop() title: string;
+  @Prop({ default: 'medium' }) priority: string;
+  @Prop() description: string;
+  @Prop() timeframe: string;
+  @Prop() evidence: string;
+}
+export const GoalSuggestionSchema = SchemaFactory.createForClass(GoalSuggestion);
+
 @Schema({ timestamps: true })
 export class Employee {
   @Prop({ required: true, unique: true }) email: string;
   @Prop({ required: true }) name: string;
   @Prop({ default: '' }) designation: string;
+  @Prop({ default: '' }) targetDesignation: string;
   @Prop({ default: '' }) currentProject: string;
   @Prop({ type: [String], default: [] }) skills: string[];
   @Prop({ type: [String], default: [] }) pastProjects: string[];
@@ -36,5 +48,6 @@ export class Employee {
   @Prop({ type: String, enum: Role, default: Role.EMPLOYEE }) role: Role;
   @Prop({ type: VisibilitySettingsSchema, default: () => ({}) }) visibilitySettings: VisibilitySettings;
   @Prop({ default: 0 }) profileCompleteness: number;
+  @Prop({ type: [GoalSuggestionSchema], default: [] }) goalSuggestions: any[];
 }
 export const EmployeeSchema = SchemaFactory.createForClass(Employee);
