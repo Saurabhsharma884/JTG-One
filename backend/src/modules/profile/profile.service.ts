@@ -19,15 +19,19 @@ export class ProfileService {
     const objectId = new Types.ObjectId(employeeId);
     const employee = await this.employeeModel.findById(objectId).lean().exec();
     if (!employee) throw new NotFoundException(`Employee with ID ${employeeId} not found`);
-    const timelineHighlights = await this.timelineEventModel.find({ employeeId: objectId }).sort({ date: -1 }).limit(5).lean().exec();
-    const latestFeedback = await this.feedbackImportModel.findOne({ employeeId: objectId, isLatest: true }).lean().exec();
-    const latestAISuggestion = await this.aiSuggestionModel.findOne({ employeeId: objectId }).sort({ generatedAt: -1 }).lean().exec();
-    return { profile: employee, timelineHighlights, latestFeedback, latestAISuggestion };
+    const timeline = await this.timelineEventModel.find({ employeeId: objectId }).sort({ date: -1 }).lean().exec();
+    const feedbackAnalyses = await this.feedbackImportModel.find({ employeeId: objectId }).sort({ importedAt: -1 }).lean().exec();
+    const aiSuggestions = await this.aiSuggestionModel.find({ employeeId: objectId, status: 'completed' }).sort({ generatedAt: -1 }).lean().exec();
+    return { profile: employee, timeline, feedbackAnalyses, aiSuggestions };
   }
 
   async getProfile(employeeId: string) {
-     const employee = await this.employeeModel.findById(employeeId).lean().exec();
-     if (!employee) throw new NotFoundException(`Employee not found`);
-     return employee;
+    const objectId = new Types.ObjectId(employeeId);
+    const employee = await this.employeeModel.findById(employeeId).lean().exec();
+    if (!employee) throw new NotFoundException(`Employee not found`);
+    const timeline = await this.timelineEventModel.find({ employeeId: objectId }).sort({ date: -1 }).lean().exec();
+    const feedbackAnalyses = await this.feedbackImportModel.find({ employeeId: objectId }).sort({ importedAt: -1 }).lean().exec();
+    const aiSuggestions = await this.aiSuggestionModel.find({ employeeId: objectId, status: 'completed' }).sort({ generatedAt: -1 }).lean().exec();
+    return { profile: employee, timeline, feedbackAnalyses, aiSuggestions };
   }
 }

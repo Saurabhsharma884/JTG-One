@@ -45,11 +45,11 @@ export class AiAgentService {
       const careerLadder = fs.existsSync(cp) ? JSON.parse(fs.readFileSync(cp, 'utf-8')) : {};
       const prompt = `Analyze employee profile, performance data, and career ladder to return a JSON growth plan.\nProfile: ${employee.name}, ${employee.designation}, Skills: ${employee.skills.join(',')}\nData: ${JSON.stringify(sheetData)}\nLadder: ${JSON.stringify(careerLadder)}\nReturn strictly valid JSON: { "targetDesignation": "...", "suggestedGoals": ["..."], "skillGaps": [{ "skill": "...", "currentLevel": "...", "requiredLevel": "..." }], "recommendedLearningPath": [{ "title": "...", "type": "...", "url": "..." }], "projectExposureSuggestions": ["..."], "timelineForImprovement": "...", "confidenceSummary": "...", "reasoningSummary": "..." }`;
       
-      const response = await this.aiClient.models.generateContent({ model: this.configService.get('gemini.model'), contents: prompt, config: { temperature: 0.2, responseMimeType: "application/json" } });
+      const response = await this.aiClient.models.generateContent({ model: this.configService.get('gemini.model') ?? 'gemini-2.0-flash', contents: prompt, config: { temperature: 0.2, responseMimeType: "application/json" } });
       const aiResult = JSON.parse(response.text || '{}');
       await this.aiSuggestionModel.findByIdAndUpdate(jobId, { ...aiResult, sheetDataSnapshot: sheetData, status: 'completed', generatedAt: new Date() });
       this.eventEmitter.emit('ai.refresh.complete', { employeeId: employee._id.toString(), jobId, status: 'completed' });
-    } catch (error) {
+    } catch (error: any) {
       this.logger.error(error);
       await this.aiSuggestionModel.findByIdAndUpdate(jobId, { status: 'failed', errorMessage: error.message });
       this.eventEmitter.emit('ai.refresh.failed', { employeeId: employee._id.toString(), jobId, status: 'failed', error: error.message });
